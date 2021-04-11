@@ -13,38 +13,38 @@ class APITable extends Component {
     }
   }
   componentDidMount() {
-  axios.get('http/localhoast/5001').then(response => {
+  axios.get('https://localhost:5001/InvoiceSync').then(response => {
     console.log(response);
     this.setState({
-        quizs: response.data, 
+        Invoices: response.data, 
     });
   });
   }
 
   render() {
-    const { quizs = [] } = this.state;
+    const { Invoices = [] } = this.state;
     return (
       <div className="App">
-        <CardTitle className="title">Quizzes</CardTitle>
+        <CardTitle className="title">Invoices</CardTitle>
         <header className="App-header">
           <Table>
             <thead>
               <tr>
-                <th>Name</th>
+                <th>Id</th>
                 <th>Category</th>
-                <th>Diffuculty</th>
+                <th>Amount Due</th>
               </tr>
             </thead>
             <tbody>
-            {quizs.length ? 
-              quizs.map(quiz => (
-                <tr key = {quiz.id}>
+            {Invoices.length ? 
+              Invoices.map(Invoice => (
+                <tr key = {Invoice.id}>
                   <td>
-                    {/* link to view the quiz questions */}
-                    <a id="view-questions"href={`/quiz/${quiz.id}/`}>{quiz.name}</a>
+                    {/* link to view the invoices */}
+                    <a id="view-invoices"href={`/invoice/${Invoice.id}/`}>{Invoice.to}</a>
                   </td>
-                  <td>{quiz.category}</td>
-                  <td>{quiz.difficulty}</td>
+                  <td>{Invoice.category}</td>
+                  <td>{Invoice.difficulty}</td>
 
 
                 </tr>

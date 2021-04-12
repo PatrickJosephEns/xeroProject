@@ -70,7 +70,7 @@ namespace XeroNetStandardApp.Controllers
 
       TokenUtilities.DestroyToken();
 
-      return RedirectToAction("Index", "Home");
+      return Redirect("http://localhost:3000");
     }
   }
 }

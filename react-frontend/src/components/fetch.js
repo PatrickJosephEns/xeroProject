@@ -1,68 +1,64 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import { Table, CardTitle } from 'reactstrap';
-
-
-class APITable extends Component {
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      quizs: []
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { DotLoader } from "react-spinners";
+ 
+function Invoices() {
+  const [error, setError] = useState(null);
+  const [userData, setUserData] = useState({});
+  const [isLoaded, setIsLoaded] = useState(false);
+ 
+  useEffect(() => {
+    getUserDetails();
+  }, []);
+ 
+  const getUserDetails = async () => {
+    try {
+      // use the api to fetch all quizzes
+      await axios.get(
+        "https://localhost:5001/InvoiceSync"
+      ).then(response => setUserData(response.data));
+      setIsLoaded(true);
+      console.log(userData);
+    } catch (err) {
+      console.log(err);
+      setIsLoaded(true);
+      setError(err);
     }
-  }
-  componentDidMount() {
-  axios.get('https://localhost:5001/InvoiceSync').then(response => {
-    console.log(response);
-    this.setState({
-        Invoices: response.data, 
-    });
-  });
-  }
-
-  render() {
-    const { Invoices = [] } = this.state;
+  };
+ 
+  if (error) {
+    return <h1>{error.message}</h1>;
+  } else if (!isLoaded) {
     return (
-      <div className="App">
-        <CardTitle className="title">Invoices</CardTitle>
-        <header className="App-header">
-          <Table>
-            <thead>
-              <tr>
-                <th>Id</th>
-                <th>Category</th>
-                <th>Amount Due</th>
-              </tr>
-            </thead>
-            <tbody>
-            {Invoices.length ? 
-              Invoices.map(Invoice => (
-                <tr key = {Invoice.id}>
-                  <td>
-                    {/* link to view the invoices */}
-                    <a id="view-invoices"href={`/invoice/${Invoice.id}/`}>{Invoice.to}</a>
-                  </td>
-                  <td>{Invoice.category}</td>
-                  <td>{Invoice.difficulty}</td>
-
-
-                </tr>
-              ))
-              : 
-              (<tr>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-              </tr>)
-            }
-            </tbody>
-          </Table>
-        </header>
+      <div>
+        <h1>Loading data ...</h1>
+        <DotLoader sizeUnit={"px"} size={50} color={"#000"} />
       </div>
     );
   }
+ 
+  return (
+    <div className="App2">
+      <header className="App-header">
+        <h2>Xero Invoices</h2>
+      </header>
+      <div className="user-container">
+ 
+      {userData.map(data => (
+              <div>
+              <div><h5>Invoice ID</h5><p>{data.invoiceID}</p></div>
+              <div>Name:<p>{data.name}</p></div>
+ 
+               <div>dueDate:<p>{data.lineItems}</p></div>
+              <div>Date:<p>{data.date}</p></div>
+              </div>
+ 
+              ))}
+ 
+       </div>
+      <a href="https://xero.conrad-thomas.com/backend/auth/logout">Logout</a>
+    </div>
+  );
 }
-
-export default APITable;
+ 
+export default Invoices;

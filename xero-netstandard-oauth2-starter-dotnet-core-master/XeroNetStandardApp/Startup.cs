@@ -15,9 +15,13 @@ namespace XeroNetStandardApp
 {
   public class Startup
   {
+
+    // readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
     public Startup(IConfiguration configuration)
     {
       Configuration = configuration;
+
     }
 
     public IConfiguration Configuration { get; }
@@ -31,6 +35,15 @@ namespace XeroNetStandardApp
       services.AddDistributedMemoryCache();
       services.AddSession();
       services.AddMvc(options => options.EnableEndpointRouting = false);
+
+      services.AddCors(options =>
+         {
+             options.AddDefaultPolicy(
+                              builder =>
+                               {
+                                   builder.WithOrigins("http://localhost:3000");
+                               });
+          });
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,6 +64,8 @@ namespace XeroNetStandardApp
 
       app.UseRouting();
 
+      app.UseCors();
+
       app.UseAuthorization();
 
       app.UseSession();
@@ -67,6 +82,8 @@ namespace XeroNetStandardApp
 
 
       app.UseMvc();
+
+      
     }
   }
 }

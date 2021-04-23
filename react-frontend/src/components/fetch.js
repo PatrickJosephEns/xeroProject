@@ -13,7 +13,7 @@ function Invoices() {
  
   const getUserDetails = async () => {
     try {
-      // use the api to fetch all quizzes
+      // use the api to fetch all invoices
       await axios.get(
         "https://localhost:5001/InvoiceSync"
       ).then(response => setUserData(response.data));
@@ -48,15 +48,14 @@ function Invoices() {
               <div>
               <div><h5>Invoice ID</h5><p>{data.invoiceID}</p></div>
               <div>Name:<p>{data.name}</p></div>
- 
-               <div>dueDate:<p>{data.lineItems}</p></div>
+              <div>Amount:<p>{data.amount}</p></div>
               <div>Date:<p>{data.date}</p></div>
               </div>
  
               ))}
  
        </div>
-      <a href="https://xero.conrad-thomas.com/backend/auth/logout">Logout</a>
+      <a href="https://localhost:5001">Logout</a>
     </div>
   );
 }

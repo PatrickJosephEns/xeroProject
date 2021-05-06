@@ -8,7 +8,7 @@ class ChartsPage extends React.Component {
       labels: ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Purple', 'Grey'],
       datasets: [
         {
-          label: 'My First Dataset',
+          label: 'Dataset',
           data: [22, 33, 55, 12, 86, 23, 14],
           fill: false,
           backgroundColor: [
@@ -38,7 +38,7 @@ class ChartsPage extends React.Component {
   render() {
     return (
       <MDBContainer>
-        <h3 className='mt-5'>Bar chart</h3>
+        <h3 className='mt-5'>Invoice Data</h3>
         <HorizontalBar
           data={this.state.dataHorizontal}
           options={{ responsive: true }}

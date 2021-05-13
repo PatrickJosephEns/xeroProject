@@ -55,7 +55,7 @@ function Invoices() {
               ))}
  
        </div>
-      <a href="https://localhost:5001">Logout</a>
+      <a href="http://localhost:3000/home">Home</a>
     </div>
   );
 }

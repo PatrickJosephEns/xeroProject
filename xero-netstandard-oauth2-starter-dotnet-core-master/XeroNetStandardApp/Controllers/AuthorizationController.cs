@@ -46,7 +46,7 @@ namespace XeroNetStandardApp.Controllers
 
       TokenUtilities.StoreToken(xeroToken);
 
-      return Redirect("http://localhost:3000/charts");
+      return Redirect("http://localhost:3000/home");
     }
 
     // GET /Authorization/Disconnect

@@ -47,8 +47,9 @@ function Invoices() {
       {userData.map(data => (
               <div>
               <div><h5>Invoice ID</h5><p>{data.invoiceID}</p></div>
-              <div>Name:<p>{data.name}</p></div>
-              <div>Amount:<p>{data.amount}</p></div>
+              <div>Name:<p>{data.contact.name}</p></div>
+              <div>Total:<p>{data.total}</p></div>
+              <div>Amount Due:<p>{data.amountDue}</p></div>
               <div>Date:<p>{data.date}</p></div>
               </div>
  

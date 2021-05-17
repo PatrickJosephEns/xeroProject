@@ -1,6 +1,7 @@
 import './App.css';
 import React, { Component } from 'react';
 import Routes from './routes';
+import nav from './components/nav'
 // import "bootstrap/dist/css/bootstrap.min.css";
 
 

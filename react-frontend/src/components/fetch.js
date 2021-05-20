@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { DotLoader } from "react-spinners";
+import nav from '../components/nav'
  
 function Invoices() {
   const [error, setError] = useState(null);
@@ -31,7 +32,7 @@ function Invoices() {
   } else if (!isLoaded) {
     return (
       <div>
-        <h1>Loading data ...</h1>
+        <h1>Loading Invoice Data ...</h1>
         <DotLoader sizeUnit={"px"} size={50} color={"#000"} />
       </div>
     );
@@ -43,18 +44,28 @@ function Invoices() {
         <h2>Xero Invoices</h2>
       </header>
       <div className="user-container">
- 
-      {userData.map(data => (
-              <div>
-              <div><h5>Invoice ID</h5><p>{data.invoiceID}</p></div>
-              <div>Name:<p>{data.contact.name}</p></div>
-              <div>Total:<p>{data.total}</p></div>
-              <div>Amount Due:<p>{data.amountDue}</p></div>
-              <div>Date:<p>{data.date}</p></div>
-              </div>
- 
+
+      <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Name:</th>
+                  <th scope="col">Total:</th>
+                  <th scope="col">Amount Due:</th>
+                  <th scope="col">Date:</th>
+                </tr>
+              </thead>
+
+      {userData.map(data => (             
+              <tbody>
+                <tr>
+                  <td>{data.contact.name}</td>
+                  <td>{data.total}</td>
+                  <td>{data.amountDue}</td>
+                  <td>{data.date}</td>
+                </tr>
+              </tbody>
               ))}
- 
+ </table>
        </div>
       <a href="http://localhost:3000/home">Home</a>
     </div>

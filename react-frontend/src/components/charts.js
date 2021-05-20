@@ -1,6 +1,7 @@
 import React from 'react';
 import { HorizontalBar } from 'react-chartjs-2';
 import { MDBContainer } from 'mdbreact';
+import {Invoices} from './fetch'
 
 class ChartsPage extends React.Component {
   state = {

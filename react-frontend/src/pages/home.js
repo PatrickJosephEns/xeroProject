@@ -2,11 +2,13 @@ import React, { useState, useEffect, location, Link} from "react";
 import axios from "axios";
 import { DotLoader } from "react-spinners";
 import { Button } from 'reactstrap';
+import nav from '../components/nav'
 
  
 function Home() {
 
   return (
+    
           <nav class="navbar navbar-expand-lg navbar-dark primary-color">
             <a class="navbar-brand" href="#">Xero</a>
             <button class="navbar-toggler" type="button" 

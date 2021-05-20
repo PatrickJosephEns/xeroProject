@@ -5,6 +5,7 @@ import charts from './components/charts';
 import home from './pages/home';
 import React from 'react';
 import SignUp from './pages/signup';
+
 // import "bootstrap/dist/css/bootstrap.min.css";
 
 

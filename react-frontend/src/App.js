@@ -1,14 +1,16 @@
 import './App.css';
 import React, { Component } from 'react';
 import Routes from './routes';
-import nav from './components/nav'
-// import "bootstrap/dist/css/bootstrap.min.css";
+import Navbar from './components/navbar';
 
 
 
 const App = () =>  {
   return (
+    <React.Fragment>
+    <Navbar />   
     <Routes/>
+    </React.Fragment>
   )
 }
 

@@ -2,9 +2,9 @@
 import  {Route, Switch, BrowserRouter} from 'react-router-dom';
 import fetch from './components/fetch';
 import charts from './components/charts';
-import home from './pages/home';
+import home from './components/pages/home';
 import React from 'react';
-import SignUp from './pages/signup';
+import SignUp from './components/pages/signup';
 
 // import "bootstrap/dist/css/bootstrap.min.css";
 

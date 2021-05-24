@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { DotLoader } from "react-spinners";
-import nav from '../components/nav'
+
  
 function Invoices() {
   const [error, setError] = useState(null);

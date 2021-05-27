@@ -1,12 +1,13 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { HorizontalBar } from 'react-chartjs-2';
 import { MDBContainer } from 'mdbreact';
 
 
 
 
-class ChartsPage extends React.Component {
-  state = {
+function ChartsPage() {
+  const [count, setCount] = useState(0);
+
     dataHorizontal: {
       labels: ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Purple', 'Grey'],
       datasets: [
@@ -36,9 +37,7 @@ class ChartsPage extends React.Component {
         }
       ]
     }
-  };
 
-  render() {
     return (
       <MDBContainer>
         <h3 className='mt-5'>Invoice Data</h3>
@@ -49,6 +48,6 @@ class ChartsPage extends React.Component {
       </MDBContainer>
     );
   }
-}
+
 
 export default ChartsPage;

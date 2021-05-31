@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { DotLoader } from "react-spinners";
-
+import Charts from 'charts'
  
 function Invoices() {
   const [error, setError] = useState(null);
@@ -54,6 +54,7 @@ function Invoices() {
                   <th scope="col">Date:</th>
                 </tr>
               </thead>
+              <Chart chartData={userData} />
 
       {userData.map(data => (             
               <tbody>

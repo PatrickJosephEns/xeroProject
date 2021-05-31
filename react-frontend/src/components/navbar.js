@@ -25,8 +25,8 @@ function NavBar() {
                     Invoice data</a>   
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="">
-                    temp</a>
+                  <a class="nav-link" href="http://localhost:3000/charts">
+                    charts</a>
                 </li>
                 </ul>
             </div>

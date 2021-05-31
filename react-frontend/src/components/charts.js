@@ -5,15 +5,39 @@ import { MDBContainer } from 'mdbreact';
 
 
 
-function ChartsPage() {
+function ChartsPage(chartData) {
+  const [error, setError] = useState(null);
+  const [userData, setUserData] = useState({});
+  const [isLoaded, setIsLoaded] = useState(false);
+
   const [count, setCount] = useState(0);
 
-    dataHorizontal: {
+  useEffect(() => {
+    getUserDetails();
+  }, []);
+
+  const getUserDetails = async () => {
+    setUserData(chartData)
+    setIsLoaded(true)
+  };
+
+  if (error) {
+    return <h1>{error.message}</h1>;
+  } else if (!isLoaded) {
+    return (
+      <div>
+        <h1>Loading Invoice Data ...</h1>
+        <DotLoader sizeUnit={"px"} size={50} color={"#000"} />
+      </div>
+    );
+  }
+
+    dataHorizontal = {
       labels: ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Purple', 'Grey'],
       datasets: [
         {
           label: 'Dataset',
-          data: [22, 33, 55, 12, 86, 23, 14],
+          data: userData.amountDue,
           fill: false,
           backgroundColor: [
             'rgba(255, 99, 132, 0.2)',
@@ -43,6 +67,7 @@ function ChartsPage() {
         <h3 className='mt-5'>Invoice Data</h3>
         <HorizontalBar
           data={this.state.dataHorizontal}
+          // data = {userData.map(data => (data.amountDue))}
           options={{ responsive: true }}
         />
       </MDBContainer>

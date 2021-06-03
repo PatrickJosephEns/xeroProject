@@ -41,7 +41,7 @@ namespace XeroNetStandardApp
              options.AddDefaultPolicy(
                               builder =>
                                {
-                                   builder.WithOrigins("http://localhost:3000");
+                                   builder.WithOrigins("http://52.63.164.208/");
                                });
           });
     }

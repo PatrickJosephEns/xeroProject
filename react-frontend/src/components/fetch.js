@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { DotLoader } from "react-spinners";
+
  
 function Invoices() {
   const [error, setError] = useState(null);
@@ -13,12 +14,15 @@ function Invoices() {
  
   const getUserDetails = async () => {
     try {
-      // use the api to fetch all quizzes
+      // use the api to fetch all invoices
       await axios.get(
         "https://localhost:5001/InvoiceSync"
-      ).then(response => setUserData(response.data));
-      setIsLoaded(true);
-      console.log(userData);
+      ).then(response => {
+        setUserData(response.data)
+        setIsLoaded(true)
+      
+      });
+      
     } catch (err) {
       console.log(err);
       setIsLoaded(true);
@@ -31,7 +35,7 @@ function Invoices() {
   } else if (!isLoaded) {
     return (
       <div>
-        <h1>Loading data ...</h1>
+        <h1>Loading Invoice Data ...</h1>
         <DotLoader sizeUnit={"px"} size={50} color={"#000"} />
       </div>
     );
@@ -43,20 +47,30 @@ function Invoices() {
         <h2>Xero Invoices</h2>
       </header>
       <div className="user-container">
- 
-      {userData.map(data => (
-              <div>
-              <div><h5>Invoice ID</h5><p>{data.invoiceID}</p></div>
-              <div>Name:<p>{data.name}</p></div>
- 
-               <div>dueDate:<p>{data.lineItems}</p></div>
-              <div>Date:<p>{data.date}</p></div>
-              </div>
- 
-              ))}
- 
+
+      <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Name:</th>
+                  <th scope="col">Total:</th>
+                  <th scope="col">Amount Due:</th>
+                  <th scope="col">Date:</th>
+                </tr>
+              </thead>
+
+       {userData.map(data => (             
+              <tbody>
+                <tr>
+                  <td>{data.contact.name}</td>
+                  <td>{data.total}</td>
+                  <td>{data.amountDue}</td>
+                  <td>{data.date}</td>
+                </tr>
+              </tbody>
+              ))} 
+ </table>
        </div>
-      <a href="https://xero.conrad-thomas.com/backend/auth/logout">Logout</a>
+      <a href="http://localhost:3000/home">Home</a>
     </div>
   );
 }

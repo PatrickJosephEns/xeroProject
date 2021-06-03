@@ -46,7 +46,7 @@ namespace XeroNetStandardApp.Controllers
 
       TokenUtilities.StoreToken(xeroToken);
 
-      return RedirectToAction("Index", "OrganisationInfo");
+      return Redirect("http://localhost:3000/home");
     }
 
     // GET /Authorization/Disconnect

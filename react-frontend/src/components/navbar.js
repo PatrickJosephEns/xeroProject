@@ -1,7 +1,5 @@
 import React, { useState, useEffect, location, Link} from "react";
-import axios from "axios";
-import { DotLoader } from "react-spinners";
-import { Button } from 'reactstrap';
+
  
 function NavBar() {
 

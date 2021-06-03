@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { DotLoader } from "react-spinners";
-import Charts from 'charts'
+
  
 function Invoices() {
   const [error, setError] = useState(null);
@@ -17,9 +17,12 @@ function Invoices() {
       // use the api to fetch all invoices
       await axios.get(
         "https://localhost:5001/InvoiceSync"
-      ).then(response => setUserData(response.data));
-      setIsLoaded(true);
-      console.log(userData);
+      ).then(response => {
+        setUserData(response.data)
+        setIsLoaded(true)
+      
+      });
+      
     } catch (err) {
       console.log(err);
       setIsLoaded(true);
@@ -54,9 +57,8 @@ function Invoices() {
                   <th scope="col">Date:</th>
                 </tr>
               </thead>
-              <Chart chartData={userData} />
 
-      {userData.map(data => (             
+       {userData.map(data => (             
               <tbody>
                 <tr>
                   <td>{data.contact.name}</td>
@@ -65,7 +67,7 @@ function Invoices() {
                   <td>{data.date}</td>
                 </tr>
               </tbody>
-              ))}
+              ))} 
  </table>
        </div>
       <a href="http://localhost:3000/home">Home</a>

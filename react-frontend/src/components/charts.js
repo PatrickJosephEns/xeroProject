@@ -1,24 +1,40 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { HorizontalBar } from 'react-chartjs-2';
 import { MDBContainer } from 'mdbreact';
+import axios from "axios";
 
+import { DotLoader } from "react-spinners";
 
-
-
-function ChartsPage(chartData) {
+function ChartsPage() {
   const [error, setError] = useState(null);
   const [userData, setUserData] = useState({});
   const [isLoaded, setIsLoaded] = useState(false);
 
   const [count, setCount] = useState(0);
 
-  useEffect(() => {
-    getUserDetails();
+  useEffect(async () => {
+    try {
+      // use the api to fetch all invoices
+      await axios.get(
+        "https://localhost:5001/InvoiceSync"
+      ).then(response => {
+        setUserData(response.data)
+        setIsLoaded(true)
+      
+      });
+      
+    } catch (err) {
+      console.log(err);
+      setIsLoaded(true);
+      setError(err);
+    }
+
   }, []);
 
   const getUserDetails = async () => {
-    setUserData(chartData)
+    setUserData(userData)
     setIsLoaded(true)
+    console.log(userData)
   };
 
   if (error) {
@@ -31,23 +47,16 @@ function ChartsPage(chartData) {
       </div>
     );
   }
+  console.log(userData)
 
-    dataHorizontal = {
-      labels: ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Purple', 'Grey'],
+    const dataHorizontal = {
+      labels: userData.filter(x => x.amountDue != 0).map(x => x.contact.name),
       datasets: [
         {
-          label: 'Dataset',
-          data: userData.amountDue,
+          label: 'dfsd',
+          data: userData.filter(x => x.amountDue != 0).map(x => x.amountDue),
           fill: false,
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(255, 159, 64, 0.2)',
-            'rgba(255, 205, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-            'rgba(201, 203, 207, 0.2)'
-          ],
+          backgroundColor: userData.filter(x => x.amountDue != 0).map(x => "Red"),
           borderColor: [
             'rgb(255, 99, 132)',
             'rgb(255, 159, 64)',
@@ -57,16 +66,18 @@ function ChartsPage(chartData) {
             'rgb(153, 102, 255)',
             'rgb(201, 203, 207)'
           ],
-          borderWidth: 1
+          borderWidth: 0
         }
       ]
     }
+
+
 
     return (
       <MDBContainer>
         <h3 className='mt-5'>Invoice Data</h3>
         <HorizontalBar
-          data={this.state.dataHorizontal}
+          data={dataHorizontal}
           // data = {userData.map(data => (data.amountDue))}
           options={{ responsive: true }}
         />

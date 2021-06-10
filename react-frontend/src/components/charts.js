@@ -53,7 +53,7 @@ function ChartsPage() {
       labels: userData.filter(x => x.amountDue != 0).map(x => x.contact.name),
       datasets: [
         {
-          label: 'dfsd',
+          label: 'Amount Due',
           data: userData.filter(x => x.amountDue != 0).map(x => x.amountDue),
           fill: false,
           backgroundColor: userData.filter(x => x.amountDue != 0).map(x => "Red"),

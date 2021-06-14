@@ -15,7 +15,7 @@ function Invoices() {
     try {
       // use the api to fetch all quizzes
       await axios.get(
-        "InvoiceSync"
+        "/InvoiceSync"
       ).then(response => setUserData(response.data));
       setIsLoaded(true);
       console.log(userData);
